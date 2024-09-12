@@ -1,0 +1,217 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《原神》-主页</title>
+    <link rel="icon" type="image/x-icon" href="..\icon\pm.ico" />
+
+    <style>
+        .audio-controls {
+            position: absolute;
+            top: 18px;
+            right: 50px;
+        }
+        .audio-controls img {
+            cursor: pointer;
+            display: none;
+        }
+        .audio-controls #bgmon {
+            display: block;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav{
+            display: flex;
+        }
+
+        nav ul {
+            width: 60%;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav .img{
+            width: 20%;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover {
+            background-color: gray;
+            text-shadow: 0 0 10px #f9cf80,0 0 20px #f9cf80,0 0 40px #f9cf80;
+        }
+
+        nav ul li.active a {
+            background-color: gray;
+            transition: background-color 0.3s ease;
+            text-shadow:0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80
+        }
+
+        #header-logo {
+            display: block;
+            margin-left: 20px;
+        }
+        .logo-button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <img id="header-logo" src ="../img/logo-header-cut.png" alt="原神" class="img logo-button">
+        <ul>
+            <li class="nav-item active"><a href="./home.html">首&nbsp;页</a></li>
+            <li><a href="./character/character_city_mondstadt.html">角&nbsp;色</a></li>
+            <li><a href="./world">世&nbsp;界</a></li>
+            <li><a href="./news">新&nbsp;闻</a></li>
+            <li><a href="./aboutus">关于我们</a></li>
+            <li><a href="user_center_account">用户中心</a></li>
+        </ul>
+    </nav>
+</header>
+
+<video src="../video/5.0封面(循环用).mp4" style="width: 100%;height: 100%;object-fit: cover;position: fixed;top: 0;left: 0;z-index: -1" autoplay="autoplay" loop="loop" muted="muted"></video>
+<img id="playerButton" src="../icon/player.png" alt="Play Video" style="cursor: pointer;position: fixed; top: 59%; left: 80%; transform: translate(-50%, 370%);height: 44.24;width: 53.2;">
+
+<div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <video id="modalVideo" controls width="640" height="480">
+            <source src="../video/《原神》官方网站-全新5.0版本「荣花与炎日之途」上线！.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+<div id="videoModal2" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <video id="modalVideo2" controls width="640" height="480">
+            <source src="../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+<audio id="bgm" autoplay>
+    </audio>
+<div class="audio-controls">
+    <img id="bgmoff" src="../icon/bgmoff.png" alt="静音" style="display: none;">
+    <img id="bgmon" src="../icon/bgmon.png" alt="取消静音" style="display: block;">
+</div>
+
+<script>
+    const audioElement = document.getElementById('bgm');
+    const playList = [
+        '../bgm/陈致逸、HOYO-MiX - Genshin Impact Main Theme 原神.mp3',
+        '../bgm/HOYO-MiX、陈致逸 - Twilight Serenity (Genshin Impact Main Theme Var.) 宁静的黄昏.mp3',
+        '../bgm/HOYO-MiX、陈致逸 - Eternal Anamnesis (Genshin Impact Main Theme Var.) 永恒的回忆.mp3'
+    ];
+    let currentIndex = 0;
+    document.getElementById('playerButton').addEventListener('click', function() {
+        audioElement.muted = true;
+
+        var modal = document.getElementById('videoModal');
+        var video = document.getElementById('modalVideo');
+        modal.style.display = 'block';
+        video.play();
+    });
+
+    document.getElementById('header-logo').addEventListener('click', function() {
+        document.getElementById('videoModal2').style.display = 'block';
+        var modalVideo2 = document.getElementById('modalVideo2');
+        modalVideo2.play();
+        audioElement.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    window.onclick = function(event) {
+        var modal = document.getElementById('videoModal');
+        var modal2 = document.getElementById('videoModal2');
+        var video = modal.querySelector('video');
+        var video2 = modal2.querySelector('video');
+        if (event.target === modal && !video.contains(event.target)) {
+            video.pause();
+            modal.style.display = 'none';
+            audioElement.muted = false;
+            bgmoff.style.display = 'none';
+            bgmon.style.display = 'block';
+        } else if (event.target === modal2 && !video2.contains(event.target)) {
+            video2.pause();
+            modal2.style.display = 'none';
+            audioElement.muted = false;
+            bgmoff.style.display = 'none';
+            bgmon.style.display = 'block';
+        }
+    };
+    function playNext() {
+        audioElement.src = playList[currentIndex];
+        audioElement.volume = 0.5;
+        audioElement.play();
+        currentIndex = (currentIndex + 1) % playList.length;
+    }
+    audioElement.addEventListener('ended', playNext);
+    playNext();
+    const audio = document.getElementById('bgm');
+    const bgmoff = document.getElementById('bgmoff');
+    const bgmon = document.getElementById('bgmon');
+    bgmon.addEventListener('click', function() {
+        audio.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    bgmoff.addEventListener('click', function() {
+        audio.muted = false;
+        bgmoff.style.display = 'none';
+        bgmon.style.display = 'block';
+    });
+</script>
+<script>
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    const activeLink = document.querySelector('nav ul li.active a');
+    if (activeLink) {
+        setActiveLink(activeLink);
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+
+            navLinks.forEach(l => l.parentNode.classList.remove('active'));
+
+            this.parentNode.classList.add('active');
+        });
+    });
+    function setActiveLink(link) {
+        link.parentNode.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,432 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《原神》-枫丹角色</title>
+    <link rel="icon" type="image/x-icon" href="../../icon/pm.ico" />
+
+    <style>
+        .audio-controls {
+            position: absolute;
+            top: 18px;
+            right: 50px;
+        }
+        .audio-controls img {
+            cursor: pointer;
+            display: none;
+        }
+        .audio-controls #bgmon {
+            display: block;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+
+        }
+        header h1 {
+            margin-bottom: 10px;
+        }
+        nav{
+            display: flex;
+        }
+        nav ul {
+            width: 60%;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav .img{
+            width: 20%;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 20px;
+        }
+        nav ul li a:hover {
+            background-color: gray;
+            text-shadow: 0 0 10px #f9cf80,0 0 20px #f9cf80,0 0 40px #f9cf80;
+        }
+        nav ul li.active a {
+            background-color: gray;
+            transition: background-color 0.3s ease;
+            text-shadow:0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80
+        }
+        #header-logo {
+            display: block;
+            margin-left: 20px;
+        }
+        .logo-button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .character__sidebar {
+            position: fixed;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            list-style-type: none;
+            padding: 0;
+            /*background-color: rgba(51, 51, 51, 0.5);*/
+            border-radius: 15px;
+        }
+        .character__sidebar li {
+            margin-bottom: 10px;
+        }
+        .character__sidebar li a {
+            display: block;
+            padding: 10px 15px;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            font-size: 20px;
+        }
+        .character__sidebar li a:hover {
+            background-color: gray;
+            text-shadow: 0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80;
+        }
+        .character__city--disable a {
+            pointer-events: none;
+            cursor: default;
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 20px;
+            color: transparent;
+            text-shadow: 0 0 0 #fff;
+        }
+        body {
+            background-image: url('../../img/background/fontaine/1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 3.5s ease-in-out;
+        }
+        body.bg-2 {
+            background-image: url('../../img/background/fontaine/2.png');
+        }
+        body.bg-3 {
+            background-image: url('../../img/background/fontaine/3.png');
+        }
+        body.bg-4 {
+            background-image: url('../../img/background/fontaine/4.png');
+        }
+        body.bg-5 {
+            background-image: url('../../img/background/fontaine/5.png');
+        }
+        body.bg-6 {
+            background-image: url('../../img/background/fontaine/6.png');
+        }
+        body.bg-7 {
+            background-image: url('../../img/background/fontaine/7.png');
+        }
+
+        .character__main {
+            background-size: auto 800px;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: url(https://ys.mihoyo.com/main/_nuxt/img/bg.6c9d197.png) no-repeat center bottom;
+        }
+
+        .character__intro {
+            display: flex;
+            width: 100%;
+            min-height: 26px;
+            max-height: 150px;
+            overflow-y: auto;
+            padding: 10px 0 10px 15px;
+            box-sizing: border-box;
+            background: rgba(1, 1, 1, 0.5);
+            font-size: 16px;
+            color: #fff;
+            margin-top: 200px;
+            line-height: 26px;
+        }
+
+        .character__content::before {
+            display: block;
+            content: '';
+            width: 180px;
+            height: 4px;
+            background: #5DADF8;
+        }
+
+        .character__swiper--con {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            user-select: none;
+        }
+
+        .swiper-container {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .character__person {
+            left: calc(50% - 504px);
+            height: 800px;
+            position: absolute;
+            top: 0;
+            width: auto;
+            transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .character__name {
+            width: 400px;
+            height: auto;
+            opacity: 1;
+        }
+
+        .character__content {
+            position: absolute;
+            z-index: 4;
+            top: 18vh;
+            left: calc(50% - 53vh);
+            width: 550px;
+            transform: translateX(-300px);
+            transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+            text-align: justify;
+        }
+
+        img {
+            overflow-clip-margin: content-box;
+            overflow: clip;
+            }
+
+
+        .character__icon {
+            opacity: 0.5;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <img id="header-logo" src ="../../img/logo-header-cut.png" alt="原神" class="img logo-button">
+        <ul>
+            <li><a href="../home.html">首&nbsp;页</a></li>
+            <li class="nav-item active"><a href="../character/character_city_mondstadt.html">角&nbsp;色</a></li>
+            <li><a href="./world">世&nbsp;界</a></li>
+            <li><a href="./news">新&nbsp;闻</a></li>
+            <li><a href="./aboutus">关于我们</a></li>
+            <li><a href="user_center_account">用户中心</a></li>
+        </ul>
+    </nav>
+</header>
+
+<audio id="bgm" autoplay></audio>
+<div class="audio-controls">
+    <img id="bgmoff" src="../../icon/bgmoff.png" alt="静音" style="display: none;">
+    <img id="bgmon" src="../../icon/bgmon.png" alt="取消静音" style="display: block;">
+</div>
+
+<div id="videoModal2" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <video id="modalVideo2" controls width="640" height="480">
+            <source src="../../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<div class="character__main">
+    <div class="swiper-container character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+        <ul class="swiper-wrapper" style="transition-duration: 0ms;">
+            <li class="swiper-slide" style="width: 1513px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                <img src="https://act-webstatic.mihoyo.com/upload/contentweb/hk4e/e8d153da1a2dca7a07fd76397cd60612_7641410511196198159.png" draggable="false" class="character__person">
+                <img src="https://act-webstatic.mihoyo.com/upload/contentweb/hk4e/b6b52488f3e37681298dceb2a928e271_4158568216432006478.png" draggable="false" class="character__icon">
+                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <img src="https://act-webstatic.mihoyo.com/upload/contentweb/hk4e/c80c8177fbec2d4519349cd518582468_6096234666280474488.png" draggable="false" class="character__name">
+                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                <div class="character__intro-content">
+                                    <p>「众水、众方、众民与众律法的女王」，深受民众喜爱。
+                                    <br>
+                                    热衷于欧庇克莱歌剧院上演的每一场审判，也总是在意着「观众」的眼光。</p>
+                                </div>
+                            </div>
+                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                <div class="mCSB_draggerContainer">
+                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                    </div>
+                                    <div class="mCSB_draggerRail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/118926/c69b223fb30f85f89d3a04b8857dc18d_7641711416889820360.png" draggable="false" class="character__sen">
+            </li>
+        </ul>
+    </div>
+</div>
+
+<ul class="character__sidebar">
+    <li class="character__city"><a href="../character/character_city_mondstadt.html">蒙德城</a></li>
+    <li class="character__city"><a href="../character/character_city_liyue.html">璃月港</a></li>
+    <li class="character__city"><a href="../character/character_city_inazuma.html">稻妻城</a></li>
+    <li class="character__city"><a href="../character/character_city_sumeru.html">须弥城</a></li>
+    <li class="character__city active"><a href="../character/character_city_fontaine.html">枫丹廷</a></li>
+    <li class="character__city"><a href="../character/character_city_natlan.html">纳&nbsp;&nbsp;&nbsp;塔</a></li>
+    <li class="character__city character__city--disable"><a href="#">敬请期待</a></li>
+</ul>
+
+<script>
+    const audioElement = document.getElementById('bgm');
+    const playList = [
+        '../../bgm/HOYO-MiX - 枫丹 Fontaine.mp3',
+        '../../bgm/HOYO-MiX - 轻涟 La vaguelette.mp3',
+        '../../bgm/HOYO-MiX - 煌荣之期 Glory and Decay.mp3',
+        '../../bgm/HOYO-MiX - 安魂的协奏曲 Requiem Resonantia.mp3'
+    ];
+    let currentIndex = 0;
+
+    document.getElementById('header-logo').addEventListener('click', function() {
+        document.getElementById('videoModal2').style.display = 'block';
+        var modalVideo2 = document.getElementById('modalVideo2');
+        modalVideo2.play();
+        audioElement.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    window.onclick = function(event) {
+        var modal2 = document.getElementById('videoModal2');
+        var video2 = modal2.querySelector('video');
+        if (event.target === modal2 && !video2.contains(event.target)) {
+            video2.pause();
+            modal2.style.display = 'none';
+            audioElement.muted = false;
+            bgmoff.style.display = 'none';
+            bgmon.style.display = 'block';
+        }
+    };
+    function playNext() {
+        audioElement.src = playList[currentIndex];
+        audioElement.volume = 0.5;
+        audioElement.play();
+        currentIndex = (currentIndex + 1) % playList.length;
+    }
+    audioElement.addEventListener('ended', playNext);
+    playNext();
+    const audio = document.getElementById('bgm');
+    const bgmoff = document.getElementById('bgmoff');
+    const bgmon = document.getElementById('bgmon');
+    bgmon.addEventListener('click', function() {
+        audio.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    bgmoff.addEventListener('click', function() {
+        audio.muted = false;
+        bgmoff.style.display = 'none';
+        bgmon.style.display = 'block';
+    });
+</script>
+<script>
+    function preloadImages(imageSources) {
+        const images = [];
+        for (let i = 0; i < imageSources.length; i++) {
+            images[i] = new Image();
+            images[i].src = imageSources[i];
+        }
+    }
+
+    const bgImageSources = [
+        '../../img/background/fontaine/1.png',
+        '../../img/background/fontaine/2.png',
+        '../../img/background/fontaine/3.png',
+        '../../img/background/fontaine/4.png',
+        '../../img/background/fontaine/5.png',
+        '../../img/background/fontaine/6.png',
+        '../../img/background/fontaine/7.png',
+    ];
+
+    preloadImages(bgImageSources);
+</script>
+<script>
+    const bgImageClasses = ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'bg-5', 'bg-6', 'bg-7'];
+    let bgImageIndex = 0;
+    setInterval(function() {
+        bgImageClasses.forEach(className => document.body.classList.remove(className));
+        bgImageIndex = (bgImageIndex + 1) % bgImageClasses.length;
+        document.body.classList.add(bgImageClasses[bgImageIndex]);
+    }, 8000);
+</script>
+<script>
+    const sidebarLinks = document.querySelectorAll('.character__sidebar li a');
+
+    const activeLink = document.querySelector('.character__sidebar li.active a');
+    if (activeLink) {
+        setActiveLink(activeLink);
+    }
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+
+            sidebarLinks.forEach(l => {
+                l.parentNode.classList.remove('active');
+                l.style.backgroundColor = '';
+                l.style.transition = 'background-color 0.3s ease';
+            });
+
+            this.parentNode.classList.add('active');
+            this.style.backgroundColor = 'gray';
+        });
+    });
+
+    function setActiveLink(link) {
+        link.parentNode.classList.add('active');
+        link.style.backgroundColor = '#5DADF8';
+        link.style.textShadow = '0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80';
+    }
+
+</script>
+<script>
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    const activeLink = document.querySelector('nav ul li.active a');
+    if (activeLink) {
+        setActiveLink(activeLink);
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+
+            navLinks.forEach(l => l.parentNode.classList.remove('active'));
+
+            this.parentNode.classList.add('active');
+        });
+    });
+    function setActiveLink(link) {
+        link.parentNode.classList.add('active');
+    }
+</script>
+</body>
+</html>

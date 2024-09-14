@@ -1,0 +1,365 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《原神》&nbsp;-&nbsp;世界    </title>
+    <link rel="icon" type="image/x-icon" href="..\icon\pm.ico" />
+
+    <style>
+        .audio-controls {
+            position: absolute;
+            top: 18px;
+            right: 50px;
+        }
+        .audio-controls img {
+            cursor: pointer;
+            display: none;
+        }
+        .audio-controls #bgmon {
+            display: block;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        nav{
+            display: flex;
+        }
+
+        nav ul {
+            width: 60%;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav .img{
+            width: 20%;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-size: 20px;
+        }
+
+        nav ul li a:hover {
+            background-color: gray;
+            text-shadow: 0 0 10px #f9cf80,0 0 20px #f9cf80,0 0 40px #f9cf80;
+        }
+
+        nav ul li.active a {
+            background-color: gray;
+            transition: background-color 0.3s ease;
+            text-shadow:0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80
+        }
+
+        #header-logo {
+            display: block;
+            margin-left: 20px;
+        }
+        .logo-button {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        .city {
+            width: 100%;
+        }
+ 
+        .city__list {
+            overflow: hidden;
+        }
+ 
+        .city__list-item {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            background: center no-repeat;
+            background-size: 100% auto;
+            cursor: pointer;
+            overflow: hidden;
+        }
+ 
+/* 没选中时的阴影 */
+        .city__list-item::before {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .city__list-item:hover:not(.city__list-char)::before {
+            background: none;
+        }
+        
+        .city__list-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            block-size: 100% auto;
+            transition: transform 0.4s 0s ease-out;
+            background-size: cover;
+        }
+        
+        .city__list-item a,
+        .city__list-item p {
+            display: inline-block;
+            position: relative;
+            z-index: 3;
+            font-size: 36px;
+            color: #fff;
+            line-height: 260px;
+            width: 100%;
+            height: 260px;
+            background: url(../image/city/宝石.png) center no-repeat;
+            background-size: 132px;
+            text-align: center;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            margin: 0 !important;
+            overflow: hidden;
+        }
+        
+        .city__list p::after {
+            position: absolute;
+            bottom: 91px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            content: '';
+            width: 210px;
+            height: 10px;
+            background: url(../image/city/边框.png) center no-repeat;
+            background-size: 210px 10px;
+            opacity: 0;
+        }
+        
+        .city__list-item:hover .city__list-bg {
+            transform: scale(1.1);
+        }
+        
+        .city__list-item:hover p::after,
+        .city__list-item:hover a::after {
+            opacity: 1;
+        }
+        
+        .city__list-item .city__list-char {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            display: block;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: calc(50% + 360px) 50%;
+            background-size: 960px 260px;
+            opacity: 0;
+            transition: all 0.2s 0s ease-in;
+            border: #fff solid 6px;
+            box-sizing: border-box;
+        }
+        
+        .city ul li:hover .city__list-char {
+            opacity: 1;
+        }
+        
+        .city__list-item3 {
+            background-image: url(../image/city/lastcontinue.jpg);
+            background-size: cover;
+        }
+        
+        .city__list-item--disable {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <img id="header-logo" src ="../img/logo-header-cut.png" alt="原神" class="img logo-button">
+        <ul>
+            <li><a href="./home.html">首&nbsp;页</a></li>
+            <li><a href="./character/character_city_mondstadt.html">角&nbsp;色</a></li>
+            <li class="nav-item active"><a href="./world.html">世&nbsp;界</a></li>
+            <li><a href="./news">新&nbsp;闻</a></li>
+            <li><a href="./aboutus">关于我们</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="city">
+    <ul class="city__list">
+        <!-- 蒙德城 -->
+        <li class="city__list-item">
+                <div class="city__list-bg" style="background-image: url(&quot;https://uploadstatic.mihoyo.com/contentweb/20200211/2020021114213984258.jpg&quot;);"></div>
+                <a href="#">
+                    <p>蒙德城</p>
+                </a>
+                <div class="city__list-char" style="background-image: url(&quot;https://uploadstatic.mihoyo.com/contentweb/20220121/2022012117384457834.png&quot;);"></div>
+        </li>
+        <!-- 璃月港 -->
+        <li class="city__list-item">
+                <div class="city__list-bg" style="background-image: url(&quot;https://uploadstatic.mihoyo.com/contentweb/20200515/2020051511071844630.jpg&quot;);"></div>
+                <a href="#">
+                    <p>璃月城</p>
+                </a>
+                <div class="city__list-char" style="background-image: url(&quot;https://uploadstatic.mihoyo.com/contentweb/20210624/2021062410110987203.png&quot;);"></div>
+        </li>
+        <!-- 稻妻城 -->
+        <li class="city__list-item">
+                <div class="city__list-bg" style="background-image: url(&quot;https://uploadstatic.mihoyo.com/contentweb/20210720/2021072011394586258.jpg&quot;);"></div>
+                <a href="#">
+                    <p>稻妻城</p>
+                </a>
+                <div class="city__list-char" style="background-image: url(&quot;https://uploadstatic.mihoyo.com/contentweb/20210719/2021071917013922761.png&quot;);"></div>
+        </li>
+        <!-- 须弥城 -->
+        <li class="city__list-item">
+                <div class="city__list-bg" style="background-image: url(&quot;https://webstatic.mihoyo.com/upload/contentweb/2022/08/15/b01e3edba8378a485bd2f8b2075e4e86_8655330006701981250.jpg&quot;);"></div>
+                <a href="#">
+                    <p>须弥城</p>
+                </a>
+                <div class="city__list-char" style="background-image: url(&quot;https://webstatic.mihoyo.com/upload/contentweb/2022/08/15/9ec9dfd134fa8701b8d25ed856303ea1_4280333980101063155.png&quot;);"></div>
+        </li>
+        <!-- 枫丹廷 -->
+        <li class="city__list-item">
+                <div class="city__list-bg" style="background-image: url(&quot;https://act-webstatic.mihoyo.com/upload/contentweb/hk4e/f3ac9aac39dd292a18d79cd5fe3f37ff_431332308480891397.jpg&quot;);"></div>
+                <a href="#">
+                    <p>枫丹廷</p>
+                </a>
+                <div class="city__list-char" style="background-image: url(&quot;https://act-webstatic.mihoyo.com/upload/contentweb/hk4e/826bcfa79f4c46c9c63b4c2bcd117f78_2311645273450413299.png&quot;);"></div>
+        </li>
+        <!-- 纳塔 -->
+        <li class="city__list-item">
+            <div class="city__list-bg" style="background-image: url(&quot;https://fastcdn.mihoyo.com/content-v2/hk4e/125194/2c8b4d9e141fec8647521b0101072da9_8964691950824209902.jpg&quot;);"></div>
+            <a href="#">
+                <p>纳&nbsp;&nbsp;&nbsp;塔</p>
+            </a>
+            <div class="city__list-char" style="background-image: url(&quot;https://fastcdn.mihoyo.com/content-v2/hk4e/125194/c5bf858c248410045b2d9410aeccb4a8_5850608775649588427.png&quot;);"></div>
+        </li>
+        <li class="city__list-item city__list-item--disable city__list-item3">
+            <p>敬请期待</p>
+        </li>
+    </ul>
+</div>
+
+<div id="videoModal2" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <video id="modalVideo2" controls width="640" height="480">
+            <source src="../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+<audio id="bgm" autoplay>
+    </audio>
+<div class="audio-controls">
+    <img id="bgmoff" src="../icon/bgmoff.png" alt="静音" style="display: none;">
+    <img id="bgmon" src="../icon/bgmon.png" alt="取消静音" style="display: block;">
+</div>
+
+
+<script>
+    const audioElement = document.getElementById('bgm');
+    const playList = [
+        '../bgm/陈致逸、HOYO-MiX - Genshin Impact Main Theme 原神.mp3',
+        '../bgm/HOYO-MiX、陈致逸 - Twilight Serenity (Genshin Impact Main Theme Var.) 宁静的黄昏.mp3',
+        '../bgm/HOYO-MiX、陈致逸 - Eternal Anamnesis (Genshin Impact Main Theme Var.) 永恒的回忆.mp3'
+        
+    ];
+    let currentIndex = 0;
+
+    document.getElementById('header-logo').addEventListener('click', function() {
+        document.getElementById('videoModal2').style.display = 'block';
+        var modalVideo2 = document.getElementById('modalVideo2');
+        modalVideo2.play();
+        audioElement.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    window.onclick = function(event) {
+        var modal2 = document.getElementById('videoModal2');
+        var video2 = modal2.querySelector('video');
+        if (event.target === modal2 && !video2.contains(event.target)) {
+            video2.pause();
+            modal2.style.display = 'none';
+            audioElement.muted = false;
+            bgmoff.style.display = 'none';
+            bgmon.style.display = 'block';
+        }
+    };
+    function playNext() {
+        audioElement.src = playList[currentIndex];
+        audioElement.volume = 0.5;
+        audioElement.play();
+        currentIndex = (currentIndex + 1) % playList.length;
+    }
+    audioElement.addEventListener('ended', playNext);
+    playNext();
+    const audio = document.getElementById('bgm');
+    const bgmoff = document.getElementById('bgmoff');
+    const bgmon = document.getElementById('bgmon');
+    bgmon.addEventListener('click', function() {
+        audio.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    bgmoff.addEventListener('click', function() {
+        audio.muted = false;
+        bgmoff.style.display = 'none';
+        bgmon.style.display = 'block';
+    });
+</script>
+<script>
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    const activeLink = document.querySelector('nav ul li.active a');
+    if (activeLink) {
+        setActiveLink(activeLink);
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+
+            navLinks.forEach(l => l.parentNode.classList.remove('active'));
+
+            this.parentNode.classList.add('active');
+        });
+    });
+    function setActiveLink(link) {
+        link.parentNode.classList.add('active');
+    }
+</script>
+
+</body>
+</html>

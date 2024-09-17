@@ -4,12 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>《原神》&nbsp;-&nbsp;须弥角色</title>
     <link rel="icon" type="image/x-icon" href="../../icon/pm.ico" />
-
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../../css/swiper-bundle.min.css">
     <style>
         .audio-controls {
-            position: absolute;
+            position: fixed;
             top: 18px;
             right: 50px;
+            z-index: 1000;
         }
         .audio-controls img {
             cursor: pointer;
@@ -25,9 +27,13 @@
         }
         header {
             background-color: rgba(51, 51, 51, 0.8);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
 
         }
         header h1 {
@@ -224,6 +230,7 @@
         }
 
     </style>
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 <header>
@@ -233,7 +240,7 @@
             <li><a href="../home.html">首&nbsp;页</a></li>
             <li class="nav-item active"><a href="../character/character_city_mondstadt.html">角&nbsp;色</a></li>
             <li><a href="../world.html">世&nbsp;界</a></li>
-            <li><a href="./news">新&nbsp;闻</a></li>
+            <li><a href="../news.html">新&nbsp;闻</a></li>
             <li><a href="./aboutus">关于我们</a></li>
         </ul>
     </nav>
@@ -253,7 +260,7 @@
     </div>
 </div>
 
-<div class="character__main">
+<!-- <div class="character__main">
     <div class="swiper-container character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
         <ul class="swiper-wrapper" style="transition-duration: 0ms;">
             <li class="swiper-slide" style="width: 1513px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
@@ -286,7 +293,7 @@
             </li>
         </ul>
     </div>
-</div>
+</div> -->
 
 <ul class="character__sidebar">
     <li class="character__city"><a href="../character/character_city_mondstadt.html">蒙德城</a></li>
@@ -297,6 +304,143 @@
     <li class="character__city"><a href="../character/character_city_natlan.html">纳&nbsp;&nbsp;&nbsp;塔</a></li>
     <li class="character__city character__city--disable"><a href="#">敬请期待</a></li>
 </ul>
+
+<!-- 大图 -->
+<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+    
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="character__main">
+            <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/19/a15445b2b2e4443398eabf3b479f49e7_8073097535789989508.png" draggable="false" class="character__person" id="person">
+                <!-- <img src="https://uploadstatic.mihoyo.com/contentweb/20191122/2019112214235848694.png" draggable="false" class="character__icon"> -->
+                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/15/4f3f7fc8cc5fce975bfff8d552e8e7b8_7543421952558259312.png" draggable="false" class="character__name">
+                    
+                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                <div class="character__intro-content" id="des">
+                                    <p>道成林的巡林官，毕业于阿弥利多学院的植物学学者。每天都过着巡查雨林、保护生态、教训笨蛋的充实生活。</p>
+                                </div>
+                            </div>
+                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                <div class="mCSB_draggerContainer">
+                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                    </div>
+                                    <div class="mCSB_draggerRail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="character__main">
+            <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/19/2c752da0a5921583011a4ec36f83703c_8500020629476268998.png" draggable="false" class="character__person" id="person">
+                <!-- <img src="https://uploadstatic.mihoyo.com/contentweb/20191122/2019112214235848694.png" draggable="false" class="character__icon"> -->
+                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/15/a9f6aaf7d1503afaaeb4d7fb6f943cd3_1494223600602969589.png" draggable="false" class="character__name">
+                    
+                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                <div class="character__intro-content" id="des">
+                                    <p>见习巡林员，师从提纳里。学术方面较同龄人起步稍晚，目前正在努力补习各种知识。<br>她将性格的另一面深深掩藏在阳光善良的表象之下。</p>
+                                </div>
+                            </div>
+                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                <div class="mCSB_draggerContainer">
+                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                    </div>
+                                    <div class="mCSB_draggerRail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="character__main">
+            <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/29/9b5c8d26504c19154056175bbb7e287a_7101312865137287700.png" draggable="false" class="character__person" id="person">
+                <!-- <img src="https://uploadstatic.mihoyo.com/contentweb/20191122/2019112214235848694.png" draggable="false" class="character__icon"> -->
+                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/29/319b1076ee7ad90b45982a32d0ecf159_4541894726272894285.png" draggable="false" class="character__name">
+                    
+                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                <div class="character__intro-content" id="des">
+                                    <p>多莉是活跃在须弥的百货商人，最喜欢亮闪闪的摩拉。<br>能靠着精湛话术将手里那些许多奇特又神秘的道具卖出高价。</p>
+                                </div>
+                            </div>
+                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                <div class="mCSB_draggerContainer">
+                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                    </div>
+                                    <div class="mCSB_draggerRail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      
+    </div>
+    
+</div>
+
+  <!-- 缩略图 -->
+  <div class="thumbs-box">
+      <div class="btn-prev"></div>
+      <div thumbsSlider="" class="swiper mySwiper">
+    
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/15/1f88bdae2e99307e68a0bbfedf6cc74f_2882938237707913291.png">
+                    <p>提纳里</p>
+                </div>
+              
+          </div>
+          <div class="swiper-slide">
+            <div class="box">
+                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/15/3677cbc063b7ab3887ceb7f9a77287ac_1039229097287658400.png">
+                <p>柯莱</p>
+            </div>
+              
+          </div>
+          <div class="swiper-slide">
+            <div class="box">
+                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/08/29/b8a367991017a9f3c6bb445c5c8b68e6_1191967378101363412.png">
+                <p>多莉</p>
+            </div>
+              
+          </div>
+          
+
+        </div>
+        
+      </div>
+      <div class="btn-next"></div>
+  </div>
+
+
+<script src="../../js/swiper-bundle.min.js"></script>
+<script src="../../js/main.js"></script>
 
 <script>
     const audioElement = document.getElementById('bgm');

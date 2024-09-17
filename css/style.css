@@ -1,0 +1,106 @@
+.character__sidebar{
+  z-index: 99;
+}
+.thumbs-box{
+position: absolute;
+display: flex;
+width: 1000px;
+left: 50%;
+bottom: 0;
+margin-left: -500px;
+z-index: 9;
+}
+/*swiper*/
+.swiper {
+width: 800px;
+height: 150px;
+}
+
+.swiper-slide {
+text-align: center;
+font-size: 18px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+.swiper {
+width: 800px;
+height: 300px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.swiper-slide {
+background-size: cover;
+background-position: center;
+}
+.swiper-slide .box{
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 0px 0;
+  color: #fff;
+  overflow: hidden;
+}
+.swiper-slide .box p{
+  background-color: #333;
+}
+.mySwiper2 {
+height: 100%;
+width: 100%;
+background: url(https://ys.mihoyo.com/main/_nuxt/img/bg.6c9d197.png) no-repeat center bottom;
+}
+
+.mySwiper {
+height: 20%;
+box-sizing: border-box;
+padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+width: 25%;
+height: 100%;
+
+}
+
+.mySwiper .swiper-slide-thumb-active .box{
+border: 2px solid #fff;
+}
+.mySwiper .swiper-slide-thumb-active .box p{
+background-color: #fff;
+color: #333;
+}
+
+.btn-prev,.btn-next{
+  width: 45px;
+  height: 64px;
+  background:url(../img/prev.png) no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 40px;
+  cursor: pointer;
+}
+.btn-prev{left: 30px;}
+.btn-next{
+  background:url(../img/next.png) no-repeat;
+  background-size: cover;
+  right: 30px;
+  
+}
+.character__intro{
+margin-top: 100px;
+}
+.thumbs-box{
+background: rgba(255, 255, 255, 0.2);
+border-radius: 5px;
+}
+.character__main{
+background: transparent;
+}
+.character__icon{
+margin-left: -600px;
+opacity: 0.15;
+transform: scale(0.7);
+height: 378px;
+}

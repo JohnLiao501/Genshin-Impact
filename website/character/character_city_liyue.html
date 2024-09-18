@@ -6,113 +6,8 @@
     <link rel="icon" type="image/x-icon" href="../../icon/pm.ico" />
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="../../css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <style>
-        .audio-controls {
-            position: fixed;
-            top: 18px;
-            right: 50px;
-            z-index: 1000;
-        }
-        .audio-controls img {
-            cursor: pointer;
-            display: none;
-        }
-        .audio-controls #bgmon {
-            display: block;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            background-color: rgba(51, 51, 51, 0.8);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            left: 0;
-            z-index: 1000;
-
-        }
-        header h1 {
-            margin-bottom: 10px;
-        }
-        nav{
-            display: flex;
-        }
-        nav ul {
-            width: 60%;
-            list-style-type: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        nav .img{
-            width: 20%;
-        }
-        nav ul li {
-            margin: 0 10px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-size: 20px;
-        }
-        nav ul li a:hover {
-            background-color: gray;
-            text-shadow: 0 0 10px #f9cf80,0 0 20px #f9cf80,0 0 40px #f9cf80;
-        }
-        #header-logo {
-            display: block;
-            margin-left: 20px;
-        }
-        .logo-button {
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-        }
-        .character__sidebar {
-            position: fixed;
-            top: 50%;
-            left: 30px;
-            transform: translateY(-50%);
-            list-style-type: none;
-            padding: 0;
-            /*background-color: rgba(51, 51, 51, 0.5);*/
-            border-radius: 15px;
-        }
-        .character__sidebar li {
-            margin-bottom: 10px;
-        }
-        .character__sidebar li a {
-            display: block;
-            padding: 10px 15px;
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
-            border-radius: 10px;
-            transition: background-color 0.3s ease;
-            font-size: 20px;
-        }
-        .character__sidebar li a:hover {
-            background-color: gray;
-            text-shadow: 0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80;
-        }
-        .character__city--disable a {
-            pointer-events: none;
-            cursor: default;
-            display: block;
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 20px;
-            color: transparent;
-            text-shadow: 0 0 0 #fff;
-        }
         body {
             background-image: url('../../img/background/liyue/1.png');
             background-size: cover;
@@ -144,34 +39,6 @@
         body.bg-9 {
             background-image: url('../../img/background/liyue/9.png');
         }
-        nav ul li.active a {
-            background-color: gray;
-            transition: background-color 0.3s ease;
-            text-shadow:0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80
-        }
-        .character__main {
-            background-size: auto 800px;
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background: url(https://ys.mihoyo.com/main/_nuxt/img/bg.6c9d197.png) no-repeat center bottom;
-        }
-
-        .character__intro {
-            display: flex;
-            width: 100%;
-            min-height: 26px;
-            max-height: 150px;
-            overflow-y: auto;
-            padding: 10px 0 10px 15px;
-            box-sizing: border-box;
-            background: rgba(1, 1, 1, 0.5);
-            font-size: 16px;
-            color: #fff;
-            margin-top: 150px;
-            line-height: 26px;
-        }
-
         .character__content::before {
             display: block;
             content: '';
@@ -179,383 +46,994 @@
             height: 4px;
             background: #874322;
         }
-
-        .character__swiper--con {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            user-select: none;
-        }
-
-        .swiper-container {
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            overflow: hidden;
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .character__person {
-            left: calc(50% - 504px);
-            height: 800px;
-            position: absolute;
-            top: 0;
-            width: auto;
-            transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-
-        .character__name {
-            width: 400px;
-            height: auto;
-            opacity: 1;
-        }
-
-        .character__content {
-            position: absolute;
-            z-index: 4;
-            top: 18vh;
-            left: calc(50% - 53vh);
-            width: 550px;
-            transform: translateX(-300px);
-            transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-            text-align: justify;
-        }
-
-        img {
-            overflow-clip-margin: content-box;
-            overflow: clip;
-        }
-
-        .character__sen {
-            position: absolute;
-            z-index: 5;
-            margin-top: 230px;
-        }
-
-        .character__icon {
-            opacity: 0.5;
-        }
     </style>
-    <link rel="stylesheet" href="../../css/style.css">
 
 </head>
 <body>
 
-<header>
-    <nav>
-        <img id="header-logo" src ="../../img/logo-header-cut.png" alt="原神" class="img logo-button">
-        <ul>
-            <li><a href="../home.html">首&nbsp;页</a></li>
-            <li class="nav-item active"><a href="../character/character_city_mondstadt.html">角&nbsp;色</a></li>
-            <li><a href="../world.html">世&nbsp;界</a></li>
-            <li><a href="../news.html">新&nbsp;闻</a></li>
-            <li><a href="./aboutus">关于我们</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <img id="header-logo" src ="../../img/logo-header-cut.png" alt="原神" class="img logo-button">
+            <ul>
+                <li><a href="../home.html">首&nbsp;页</a></li>
+                <li class="nav-item active"><a href="../character/character_city_mondstadt.html">角&nbsp;色</a></li>
+                <li><a href="../world.html">世&nbsp;界</a></li>
+                <li><a href="../news.html">新&nbsp;闻</a></li>
+                <li><a href="./aboutus">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<audio id="bgm" autoplay></audio>
-<div class="audio-controls">
-    <img id="bgmoff" src="../../icon/bgmoff.png" alt="静音" style="display: none;">
-    <img id="bgmon" src="../../icon/bgmon.png" alt="取消静音" style="display: block;">
-</div>
-
-<div id="videoModal2" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
-    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        <video id="modalVideo2" controls width="640" height="480">
-            <source src="../../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
-        </video>
+    <audio id="bgm" autoplay></audio>
+    <div class="audio-controls">
+        <img id="bgmoff" src="../../icon/bgmoff.png" alt="静音" style="display: none;">
+        <img id="bgmon" src="../../icon/bgmon.png" alt="取消静音" style="display: block;">
     </div>
-</div>
 
-<ul class="character__sidebar">
-    <li class="character__city"><a href="../character/character_city_mondstadt.html">蒙德城</a></li>
-    <li class="character__city active"><a href="../character/character_city_liyue.html">璃月港</a></li>
-    <li class="character__city"><a href="../character/character_city_inazuma.html">稻妻城</a></li>
-    <li class="character__city"><a href="../character/character_city_sumeru.html">须弥城</a></li>
-    <li class="character__city"><a href="../character/character_city_fontaine.html">枫丹廷</a></li>
-    <li class="character__city"><a href="../character/character_city_natlan.html">纳&nbsp;&nbsp;&nbsp;塔</a></li>
-    <li class="character__city character__city--disable"><a href="#">敬请期待</a></li>
-</ul>
+    <div id="videoModal2" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <video id="modalVideo2" controls width="640" height="480">
+                <source src="../../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <ul class="character__sidebar">
+        <li class="character__city"><a href="../character/character_city_mondstadt.html">蒙德城</a></li>
+        <li class="character__city active"><a href="../character/character_city_liyue.html">璃月港</a></li>
+        <li class="character__city"><a href="../character/character_city_inazuma.html">稻妻城</a></li>
+        <li class="character__city"><a href="../character/character_city_sumeru.html">须弥城</a></li>
+        <li class="character__city"><a href="../character/character_city_fontaine.html">枫丹廷</a></li>
+        <li class="character__city"><a href="../character/character_city_natlan.html">纳&nbsp;&nbsp;&nbsp;塔</a></li>
+        <li class="character__city character__city--disable"><a href="#">敬请期待</a></li>
+    </ul>
 
 <!-- 大图 -->
-<div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
-    
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <div class="character__main">
-            <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
-                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/930f3ce55517e3c711a962c82e4639c0_8788966481995409698.png" draggable="false" class="character__person" id="person">
-                <img src="https://uploadstatic.mihoyo.com/contentweb/20191122/2019112214235848694.png" draggable="false" class="character__icon">
-                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200220/2020022016332869699.png" draggable="false" class="character__name">
-                    
-                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
-                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
-                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                                <div class="character__intro-content" id="des">
-                                    <p>守护璃月港的「三眼五显仙人」之一，妙称「护法夜叉大将」。
-                                        <br>
-                                        虽然外表看起来是一个少年人，但一些有关他的传说，已在古卷中流传千年。
-                                        <br>
-                                        对望舒客栈中一道名为「杏仁豆腐」的菜颇为喜爱。
-                                        <br>
-                                        究其原因，是因为「杏仁豆腐」的味道，与他曾经吞噬过的「美梦」十分相似。</p>
-                                </div>
-                            </div>
-                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
-                                <div class="mCSB_draggerContainer">
-                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
-                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-                                    </div>
-                                    <div class="mCSB_draggerRail"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="character__main">
-            <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
-                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/01d9b164e0de2611c84ccdec5b84ced8_4841535305526345122.png" draggable="false" class="character__person" id="person">
-                <img src="https://uploadstatic.mihoyo.com/contentweb/20200227/2020022718433296200.png" draggable="false" class="character__icon">
-                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200227/2020022718432810701.png" draggable="false" class="character__name">
-                    
-                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
-                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
-                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                                <div class="character__intro-content" id="des">
-                                    <p>「南十字」船队头领，在璃月有着相当的声望。<br>
-                                    有人说她能开山劈海，有人说她善举剑引雷，还有人说，连可怖的冥海巨兽都不是北斗的一合之敌。<br>
-                                    外人也许会把这些话当做夸张的玩笑，但那些曾与北斗同航的人却会说——<br>
-                                    「世上若真有什么冥海巨兽，那北斗一定能将它劈作两截。」</p>
-                                </div>
-                            </div>
-                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
-                                <div class="mCSB_draggerContainer">
-                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
-                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-                                    </div>
-                                    <div class="mCSB_draggerRail"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="character__main">
-            <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
-                <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/d35a0a1d13f821fd55a6951210c672ac_8868204139408761896.png" draggable="false" class="character__person" id="person">
-                <img src="https://uploadstatic.mihoyo.com/contentweb/20200305/2020030517195293816.png" draggable="false" class="character__icon">
-                <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
-                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030616151224513.png" draggable="false" class="character__name">
-                    <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
-                        <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
-                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
-                                <div class="character__intro-content" id="des">
-                                    <p>坐拥空中宫殿，有着大量传言的璃月权贵，脸上总是挂着优雅神秘的笑容。   
-                                        <br>
-                                        作为「璃月七星」中的天权星，她不仅象征着权力与律法，也代表着财富与才智。</p>
-                                </div>
-                            </div>
-                            <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
-                                <div class="mCSB_draggerContainer">
-                                    <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
-                                        <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
-                                    </div>
-                                    <div class="mCSB_draggerRail"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-
-      
-    </div>
-    
-</div>
-
-  <!-- 缩略图 -->
-  <div class="thumbs-box">
-      <div class="btn-prev"></div>
-      <div thumbsSlider="" class="swiper mySwiper">
-    
+    <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+        
         <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-                <div class="box">
-                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030617035787693.png">
-                    <p>魈</p>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/930f3ce55517e3c711a962c82e4639c0_8788966481995409698.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20191122/2019112214235848694.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200220/2020022016332869699.png" draggable="false" class="character__name">
+                        
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>守护璃月港的「三眼五显仙人」之一，妙称「护法夜叉大将」。
+                                            <br>
+                                            虽然外表看起来是一个少年人，但一些有关他的传说，已在古卷中流传千年。
+                                            <br>
+                                            对望舒客栈中一道名为「杏仁豆腐」的菜颇为喜爱。
+                                            <br>
+                                            究其原因，是因为「杏仁豆腐」的味道，与他曾经吞噬过的「美梦」十分相似。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              
-          </div>
-          <div class="swiper-slide">
-            <div class="box">
-                <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030617043374251.png">
-                <p>北斗</p>
             </div>
-              
-          </div>
-          <div class="swiper-slide">
-            <div class="box">
-                <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030617042023125.png">
-                <p>凝光</p>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/01d9b164e0de2611c84ccdec5b84ced8_4841535305526345122.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200227/2020022718433296200.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200227/2020022718432810701.png" draggable="false" class="character__name">
+                        
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>「南十字」船队头领，在璃月有着相当的声望。<br>
+                                        有人说她能开山劈海，有人说她善举剑引雷，还有人说，连可怖的冥海巨兽都不是北斗的一合之敌。<br>
+                                        外人也许会把这些话当做夸张的玩笑，但那些曾与北斗同航的人却会说——<br>
+                                        「世上若真有什么冥海巨兽，那北斗一定能将它劈作两截。」</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-              
-          </div>
-          
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/d35a0a1d13f821fd55a6951210c672ac_8868204139408761896.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200305/2020030517195293816.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030616151224513.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>坐拥空中宫殿，有着大量传言的璃月权贵，脸上总是挂着优雅神秘的笑容。   
+                                            <br>
+                                            作为「璃月七星」中的天权星，她不仅象征着权力与律法，也代表着财富与才智。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/1169862f9fa35734b06ce09c96dad9ae_616082062681680005.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200315/2020031516374761741.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200315/2020031516373339548.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>「万民堂」的新任大厨兼跑堂，对料理之道极具热情，最拿手的是麻辣菜肴。   
+                                            <br>
+                                            年纪尚轻，但厨艺精湛，在吃虎岩的老饕之中颇有名气。
+                                            <br>
+                                            如果她要请你进行新品试吃，大可放心品尝，绝不会辜负你的期待，真的。                                        
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/4569d28adb1d8fa4394b8d02886abe7a_112403989477759098.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200324/2020032419033772019.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200324/2020032419032328739.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>璃月港飞云商会的二少爷，自幼便以勤奋好学、待人礼貌闻名。   
+                                            <br>
+                                            不过，即使是如此文雅的少年人，也有着动若脱兔的一面。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/d0accc6031019427d20d2f009169d7cd_47479893540421370.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200602/2020060218325741942.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200602/2020060218325160619.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>以璃月为中心，四处进行驱邪活动的云游方士。作为驱邪世家继承人，他自幼便有过人的绝技。然而，这种绝技并非学自师门，而是与生俱来的异能——「纯阳之体」。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/d063646e97392638e07da24ce6b8c3cb_3567507076955258130.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814033195140.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814023090007.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>璃月七星之一，玉衡星。对「帝君一言而决的璃月」颇有微词——但实际上，神挺欣赏她这样的人。   
+                                            <br>
+                                            她坚信与人类命运相关的事，应当由人类去做，而且人类一定可以做得更好。为了证明这一点，她比任何人都要努力。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814270362598.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814271020706.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814270793436.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>药庐「不卜庐」的采药姑娘兼学徒。   
+                                            <br>
+                                            因「仙缘」而拥有不死之身，行动时需要自己给自己下敕令。
+                                            <br>
+                                            七七的记忆力非常差，为了保证日常生活的顺利，她随身携带着一本笔记，写有各种各样的注意事项。
+                                            <br>
+                                            但在最不巧的那些日子里，她连「要看笔记」这件事都会忘记……
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201103/2020110317320323980.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201103/2020110314211545553.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20201103/2020110314191828910.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>达达利亚——来自寒冰之国，心思变幻莫测的客人。 
+                                            <br>
+                                            不必猜测他的想法，也无需质疑他的来意。只要记住：这副稚气未脱的外表下暗藏的，是锤炼到极致的战士之躯。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/e699d7e2413ed5dfb384ee48c2b872d3_5181262111088024686.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201120/2020112010401114547.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20201120/2020112010401695507.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>应「往生堂」邀请而来的神秘客卿。样貌俊美，举止高雅，拥有远超常人的学识。   
+                                            <br>
+                                            虽说来历不明，却知礼数、晓规矩。坐镇「往生堂」，能行天地万物之典仪。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/3deca8e73a03e779087b74ebeac883cb_3347806888199291177.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201125/2020112515343317524.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20201125/2020112515345033442.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>在璃月港，摇滚属于新兴艺术，辛焱则是这门艺术身先士卒的践行者。   
+                                            <br>
+                                            她用音乐和热情歌颂着对「成见」的反抗，想要唤醒劳于世间昏昏沉沉的灵魂。
+                                            <br>
+                                            如果有机会，请千万不要错过她的演出。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/1ae0d0aaad9ee9b55652ea7ec67f0465_624394286022075834.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20210105/2021010512063814668.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20210105/2021010512052311851.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>璃月七星的秘书，体内流淌着人类与仙兽的血脉。   
+                                            <br>                                  
+                                            天性优雅娴静，但仙兽「麒麟」温柔的性情与坚定毅重的工作态度毫无冲突。
+                                            <br>
+                                            毕竟，甘雨坚信自己所做的一切工作都是为了践行与帝君的契约，谋求璃月众生的最大福祉。                                                                        
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/300df2aed5060579f08d7db601d8710d_118206614584398576.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20210222/2021022211000571711.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20210222/2021022210585593425.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>胡桃——「往生堂」第七十七代堂主，掌控着璃月葬仪事务的重要人物。  
+                                            <br>
+                                            尽心尽力地为人们完成送别之仪，维护着世间阴阳平衡之道。
+                                            <br>
+                                            除此以外还是个神奇打油诗人，诸多「杰作」被璃月人口口相传。
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/494f7aa4668cb7fe2d6d0463e7cc835f_3323890008016600534.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20210420/2021042014111241198.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20210420/2021042014110687352.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>烟绯——身负半仙之血，能力一流的律法咨询师。   
+                                            <br>
+                                            她在循途守辙与通权达变之间寻得了只属于自己的完美平衡点，凭借律法咨询师的独特身份和自成一派的经验手段，悉心守护着璃月的契约天平。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/cb95a5b5d57165a4970d801c5dcf0435_8788044469681939890.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20211221/2021122118124746963.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/24/c25737df979f37d73c297c53fddd5bc3_5302784647964025850.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>虽为人类之身，却是仙家弟子。过去曾生活在远离璃月港的山野之间，以红绳缚魂，修身养性。   
+                                            <br>
+                                            气质淡雅如仙人，身上似乎藏有某些秘密。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/07/04/974d7a34d3cc71f74ac98e50d4b935fc_4724518145818884545.png" draggable="false" class="character__person" id="person">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20211221/2021122118001779515.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/24/fb00459567b82a88f90eb9e8fcecf46f_3540534411955411790.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>「云翰社」现任当家，集剧作与演唱能力于一身的璃月戏曲名角。风格自成一派，雅致柔美，恰如其人。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/06/30/073932dc472fa00623cefb70a18df516_4957558339748297584.png" draggable="false" class="character__person" id="person">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/05/18/b6b52488f3e37681298dceb2a928e271_5270286606701646042.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/05/18/b3b3cd2732ed303a07ffe8b552ee8e55_5014866926012877940.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>自称供职于总务司的神秘人士，却又是总务司名录里的「不存在之人」。    
+                                            <br>
+                                            神出鬼没，行踪飘忽，变幻无常，这些都是她的标志。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/01/13/52985680295fe1bf3b9eebbbace892f6_6333578342761288152.png" draggable="false" class="character__person" id="person">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/01/13/b131cb7706e97d71ecf3d4f2965b0ff1_3187599535813460519.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/01/13/5bcd238fb54326d8fe4f8e7e90db8c4f_7688913522494532198.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>年纪幼小的仙家弟子，个性真诚慷慨，习惯于照顾身边所有人。如今正跟随居住在璃月港的师父修行，时常往返于山岭与城市之间。虽然不曾明说，但比起山中洞天，她还是更爱人间的喧嚣市集。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/03/22/7e0096b8907484d2c530a57a0d0bda80_5668751415157436691.png" draggable="false" class="character__person" id="person">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/03/15/b131cb7706e97d71ecf3d4f2965b0ff1_1036001602999038250.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/03/15/19dd80a0eeea0070e658cc5b8e2ffeba_1228046708115248934.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>璃月最具盛名的药庐「不卜庐」的主人，肩上常盘着名为「长生」的白蛇。用药手法不拘一格，仁心妙术济助四海。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119432/d90148725e88befcb5ab715daff4fb78_4730047044715339397.png" draggable="false" class="character__person" id="person">
+                    <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119432/4d328d77ee1768135594ba82c14733d8_5504932727132779653.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119432/849bd75594c9add00241767d8e6eb992_2903479409286904988.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>新搬入璃月港的神秘女子，声称自己内向文静、不擅交际。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="character__main">
+                <div class="character__swiper--con swiper-container-fade swiper-container-initialized swiper-container-horizontal" style="opacity: 1;">
+                    <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119433/c649538cd00d8802daf3051a4f7d8cc3_5876167266101039777.png" draggable="false" class="character__person" id="person">
+                    <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119433/b2ae29ad28899dd0e328d2bcf471d294_2791295351714892664.png" draggable="false" class="character__icon">
+                    <div data-swiper-parallax-opacity=".1" data-swiper-parallax-duration=".5" class="character__content" style="opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                        <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119433/24490220fd8311efd388ffeeea62faa5_3846901498283255647.png" draggable="false" class="character__name">
+                        <div class="character__intro mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                            <div id="mCSB_1" class="mCustomScrollBox mCS-light-thick mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                                <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                    <div class="character__intro-content" id="des">
+                                        <p>剑匣镖局的金牌镖师，威水舞兽队的话事人，热情健谈，善与人交。</p>
+                                    </div>
+                                </div>
+                                <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light-thick mCSB_scrollTools_vertical" style="display: none;">
+                                    <div class="mCSB_draggerContainer">
+                                        <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;">
+                                            <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                        </div>
+                                        <div class="mCSB_draggerRail"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        
         </div>
         
-      </div>
-      <div class="btn-next"></div>
-  </div>
+    </div>
+
+<!-- 缩略图 -->
+    <div class="thumbs-box">
+        <div class="btn-prev"></div>
+        <div thumbsSlider="" class="swiper mySwiper">
+        
+            <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                    <div class="box">
+                        <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030617035787693.png">
+                        <p>魈</p>
+                    </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030617043374251.png">
+                    <p>北斗</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200306/2020030617042023125.png">
+                    <p>凝光</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200316/2020031618192613355.png">
+                    <p>香菱</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200324/2020032419030350146.png">
+                    <p>行秋</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200602/2020060218324180299.png">
+                    <p>重云</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814015644368.png">
+                    <p>刻晴</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20200828/2020082814265912018.png">
+                    <p>七七</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201103/2020110314190784136.png">
+                    <p>达达利亚</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201120/2020112010371210769.png">
+                    <p>钟离</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20201125/2020112515344362241.png">
+                    <p>辛焱</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20210105/2021010518424084444.png">
+                    <p>甘雨</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20210222/2021022210584218038.png   ">
+                    <p>胡桃</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20210420/2021042014093440786.png">
+                    <p>烟绯</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20211221/2021122118121612158.png">
+                    <p>申鹤</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://uploadstatic.mihoyo.com/contentweb/20211221/2021122117591771295.png">
+                    <p>云堇</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2022/05/18/76cfc9a21e196fd316070196c1396950_2919759828280177295.png">
+                    <p>夜兰</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/01/13/676ae3ebfbb61c724eae558e88cc731d_2601869312625208755.png">
+                    <p>瑶瑶</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://webstatic.mihoyo.com/upload/contentweb/2023/03/15/91d73bb4468762e12179ee84cebed661_3161005390131117182.png">
+                    <p>白术</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119432/796395c5d6e8db88d96d841f3688e5d1_4724765006036447968.png">
+                    <p>闲云</p>
+                </div>
+                
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://fastcdn.mihoyo.com/content-v2/hk4e/119433/55246234a19233fcb97b0188aae1ae87_2452464298189101184.png">
+                    <p>嘉明</p>
+                </div>
+                
+            </div>
+            
+
+            </div>
+            
+        </div>
+        <div class="btn-next"></div>
+    </div>
 
 
-<script src="../../js/swiper-bundle.min.js"></script>
-<script src="../../js/main.js"></script>
-<script>
-    const audioElement = document.getElementById('bgm');
-    const playList = [
-        '../../bgm/HOYO-MiX、陈致逸 - Liyue 璃月.mp3',
-        '../../bgm/HOYO-MiX - 埠上风光 What a Delightful Scenery.mp3',
-        '../../bgm/HOYO-MiX、陈致逸 - Gallant Challenge 鲜衣游侠.mp3'
-    ];
-    let currentIndex = 0;
+    <script src="../../js/swiper-bundle.min.js"></script>
+    <script src="../../js/main.js"></script>
+    <script>
+        const audioElement = document.getElementById('bgm');
+        const playList = [
+            '../../bgm/HOYO-MiX、陈致逸 - Liyue 璃月.mp3',
+            '../../bgm/HOYO-MiX - 埠上风光 What a Delightful Scenery.mp3',
+            '../../bgm/HOYO-MiX、陈致逸 - Gallant Challenge 鲜衣游侠.mp3'
+        ];
+        let currentIndex = 0;
 
-    document.getElementById('header-logo').addEventListener('click', function() {
-        document.getElementById('videoModal2').style.display = 'block';
-        var modalVideo2 = document.getElementById('modalVideo2');
-        modalVideo2.play();
-        audioElement.muted = true;
-        bgmon.style.display = 'none';
-        bgmoff.style.display = 'block';
-    });
-    window.onclick = function(event) {
-        var modal2 = document.getElementById('videoModal2');
-        var video2 = modal2.querySelector('video');
-        if (event.target === modal2 && !video2.contains(event.target)) {
-            video2.pause();
-            modal2.style.display = 'none';
-            audioElement.muted = false;
+        document.getElementById('header-logo').addEventListener('click', function() {
+            document.getElementById('videoModal2').style.display = 'block';
+            var modalVideo2 = document.getElementById('modalVideo2');
+            modalVideo2.play();
+            audioElement.muted = true;
+            bgmon.style.display = 'none';
+            bgmoff.style.display = 'block';
+        });
+        window.onclick = function(event) {
+            var modal2 = document.getElementById('videoModal2');
+            var video2 = modal2.querySelector('video');
+            if (event.target === modal2 && !video2.contains(event.target)) {
+                video2.pause();
+                modal2.style.display = 'none';
+                audioElement.muted = false;
+                bgmoff.style.display = 'none';
+                bgmon.style.display = 'block';
+            }
+        };
+        function playNext() {
+            audioElement.src = playList[currentIndex];
+            audioElement.volume = 0.5;
+            audioElement.play();
+            currentIndex = (currentIndex + 1) % playList.length;
+        }
+        audioElement.addEventListener('ended', playNext);
+        playNext();
+        const audio = document.getElementById('bgm');
+        const bgmoff = document.getElementById('bgmoff');
+        const bgmon = document.getElementById('bgmon');
+        bgmon.addEventListener('click', function() {
+            audio.muted = true;
+            bgmon.style.display = 'none';
+            bgmoff.style.display = 'block';
+        });
+        bgmoff.addEventListener('click', function() {
+            audio.muted = false;
             bgmoff.style.display = 'none';
             bgmon.style.display = 'block';
+        });
+    </script>
+    <script>
+        function preloadImages(imageSources) {
+            const images = [];
+            for (let i = 0; i < imageSources.length; i++) {
+                images[i] = new Image();
+                images[i].src = imageSources[i];
+            }
         }
-    };
-    function playNext() {
-        audioElement.src = playList[currentIndex];
-        audioElement.volume = 0.5;
-        audioElement.play();
-        currentIndex = (currentIndex + 1) % playList.length;
-    }
-    audioElement.addEventListener('ended', playNext);
-    playNext();
-    const audio = document.getElementById('bgm');
-    const bgmoff = document.getElementById('bgmoff');
-    const bgmon = document.getElementById('bgmon');
-    bgmon.addEventListener('click', function() {
-        audio.muted = true;
-        bgmon.style.display = 'none';
-        bgmoff.style.display = 'block';
-    });
-    bgmoff.addEventListener('click', function() {
-        audio.muted = false;
-        bgmoff.style.display = 'none';
-        bgmon.style.display = 'block';
-    });
-</script>
-<script>
-    function preloadImages(imageSources) {
-        const images = [];
-        for (let i = 0; i < imageSources.length; i++) {
-            images[i] = new Image();
-            images[i].src = imageSources[i];
+
+        const bgImageSources = [
+            '../../img/background/liyue/1.png',
+            '../../img/background/liyue/2.png',
+            '../../img/background/liyue/3.png',
+            '../../img/background/liyue/4.png',
+            '../../img/background/liyue/5.png',
+            '../../img/background/liyue/6.png',
+            '../../img/background/liyue/7.png',
+            '../../img/background/liyue/8.png',
+            '../../img/background/liyue/9.png',
+        ];
+
+        preloadImages(bgImageSources);
+    </script>
+    <script>
+        const bgImageClasses = ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'bg-5', 'bg-6', 'bg-7', 'bg-8', 'bg-9'];
+        let bgImageIndex = 0;
+        setInterval(function() {
+            bgImageClasses.forEach(className => document.body.classList.remove(className));
+            bgImageIndex = (bgImageIndex + 1) % bgImageClasses.length;
+            document.body.classList.add(bgImageClasses[bgImageIndex]);
+        }, 8000);
+    </script>
+    <script>
+        const sidebarLinks = document.querySelectorAll('.character__sidebar li a');
+
+        const activeLink = document.querySelector('.character__sidebar li.active a');
+        if (activeLink) {
+            setActiveLink(activeLink);
         }
-    }
 
-    const bgImageSources = [
-        '../../img/background/liyue/1.png',
-        '../../img/background/liyue/2.png',
-        '../../img/background/liyue/3.png',
-        '../../img/background/liyue/4.png',
-        '../../img/background/liyue/5.png',
-        '../../img/background/liyue/6.png',
-        '../../img/background/liyue/7.png',
-        '../../img/background/liyue/8.png',
-        '../../img/background/liyue/9.png',
-    ];
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
 
-    preloadImages(bgImageSources);
-</script>
-<script>
-    const bgImageClasses = ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'bg-5', 'bg-6', 'bg-7', 'bg-8', 'bg-9'];
-    let bgImageIndex = 0;
-    setInterval(function() {
-        bgImageClasses.forEach(className => document.body.classList.remove(className));
-        bgImageIndex = (bgImageIndex + 1) % bgImageClasses.length;
-        document.body.classList.add(bgImageClasses[bgImageIndex]);
-    }, 8000);
-</script>
-<script>
-    const sidebarLinks = document.querySelectorAll('.character__sidebar li a');
+                sidebarLinks.forEach(l => {
+                    l.parentNode.classList.remove('active');
+                    l.style.backgroundColor = '';
+                    l.style.transition = 'background-color 0.3s ease';
+                });
 
-    const activeLink = document.querySelector('.character__sidebar li.active a');
-    if (activeLink) {
-        setActiveLink(activeLink);
-    }
-
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-
-            sidebarLinks.forEach(l => {
-                l.parentNode.classList.remove('active');
-                l.style.backgroundColor = '';
-                l.style.transition = 'background-color 0.3s ease';
+                this.parentNode.classList.add('active');
+                this.style.backgroundColor = 'gray';
             });
-
-            this.parentNode.classList.add('active');
-            this.style.backgroundColor = 'gray';
         });
-    });
 
-    function setActiveLink(link) {
-        link.parentNode.classList.add('active');
-        link.style.backgroundColor = '#874322';
-        link.style.textShadow = '0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80';
-    }
-</script>
-<script>
-    const navLinks = document.querySelectorAll('nav ul li a');
+        function setActiveLink(link) {
+            link.parentNode.classList.add('active');
+            link.style.backgroundColor = '#874322';
+            link.style.textShadow = '0 0 10px #f9cf80, 0 0 20px #f9cf80, 0 0 40px #f9cf80';
+        }
+    </script>
+    <script>
+        const navLinks = document.querySelectorAll('nav ul li a');
 
-    const activeLink = document.querySelector('nav ul li.active a');
-    if (activeLink) {
-        setActiveLink(activeLink);
-    }
+        const activeLink = document.querySelector('nav ul li.active a');
+        if (activeLink) {
+            setActiveLink(activeLink);
+        }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
 
-            navLinks.forEach(l => l.parentNode.classList.remove('active'));
+                navLinks.forEach(l => l.parentNode.classList.remove('active'));
 
-            this.parentNode.classList.add('active');
+                this.parentNode.classList.add('active');
+            });
         });
-    });
-    function setActiveLink(link) {
-        link.parentNode.classList.add('active');
-    }
-</script>
+        function setActiveLink(link) {
+            link.parentNode.classList.add('active');
+        }
+    </script>
 </body>
 </html>

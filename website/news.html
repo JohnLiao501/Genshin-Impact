@@ -23,9 +23,8 @@
     </nav>
   </header>
 
-  <video src="../video/原神.mp4"
-    style="width: 100%;height: 100%;object-fit: cover;position: fixed;top: 0;left: 0;z-index: -1" autoplay="autoplay"
-    loop="loop" muted="muted"></video>
+  <video src="../video/原神.mp4" style="width: 100%;height: 100%;object-fit: cover;position: fixed;top: 0;left: 0;z-index: -1" autoplay="autoplay" loop="loop" muted="muted">
+  </video>
 
   <!-- 新闻资讯 -->
   <div class="new">
@@ -64,8 +63,20 @@
           <ul class="item" style="display: block;">
             <li>
               <a>
+                <p class="item_p">《原神》「神铸赋形」活动祈愿现已开启，「双手剑·山王长牙」...</p>
+                <p class="item_p2">2024/09/17</p>
+              </a>
+            </li>
+            <li>
+              <a>
                 <p class="item_p">《原神》「神铸赋形」活动祈愿现已开启，「法器·冲浪时光」「...</p>
                 <p class="item_p2">2024/08/28</p>
+              </a>
+            </li>
+            <li>
+              <a>
+                <p class="item_p">《原神》「影寂天下人」活动祈愿现已开启</p>
+                <p class="item_p2">2024/09/17</p>
               </a>
             </li>
             <li>
@@ -76,19 +87,7 @@
             </li>
             <li>
               <a>
-                <p class="item_p">《原神》「鲨鲨逐浪游」活动祈愿现已开启</p>
-                <p class="item_p2">2024/08/28</p>
-              </a>
-            </li>
-            <li>
-              <a>
-                <p class="item_p">《原神》5.0版本小红书游戏福利站签到活动现已上线</p>
-                <p class="item_p2">2024/09/17</p>
-              </a>
-            </li>
-            <li>
-              <a>
-                <p class="item_p">「荆棘与勋冠」活动：获取增益，击败敌人</p>
+                <p class="item_p">《原神》「巡火猎秘」活动祈愿现已开启</p>
                 <p class="item_p2">2024/09/17</p>
               </a>
             </li>
@@ -197,12 +196,94 @@
     </div>
   </div>
 
-  <!-- 底部 -->
+  <div id="videoModal2"
+  style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+      <video id="modalVideo2" controls width="640" height="480">
+          <source src="../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
+      </video>
+  </div>
+  </div>
+
+  <audio id="bgm" autoplay></audio>
+
+  <div class="audio-controls">
+    <img id="bgmoff" src="../icon/bgmoff.png" alt="静音" style="display: none;">
+    <img id="bgmon" src="../icon/bgmon.png" alt="取消静音" style="display: block;">
+  </div>
+
+  <script>
+    const audioElement = document.getElementById('bgm');
+    const playList = [
+        '../bgm/陈致逸、HOYO-MiX - Genshin Impact Main Theme 原神.mp3',
+        '../bgm/HOYO-MiX、陈致逸 - Twilight Serenity (Genshin Impact Main Theme Var.) 宁静的黄昏.mp3',
+        '../bgm/HOYO-MiX、陈致逸 - Eternal Anamnesis (Genshin Impact Main Theme Var.) 永恒的回忆.mp3'
+
+    ];
+    let currentIndex = 0;
+
+    document.getElementById('header-logo').addEventListener('click', function () {
+        document.getElementById('videoModal2').style.display = 'block';
+        var modalVideo2 = document.getElementById('modalVideo2');
+        modalVideo2.play();
+        audioElement.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    window.onclick = function (event) {
+        var modal2 = document.getElementById('videoModal2');
+        var video2 = modal2.querySelector('video');
+        if (event.target === modal2 && !video2.contains(event.target)) {
+            video2.pause();
+            modal2.style.display = 'none';
+            audioElement.muted = false;
+            bgmoff.style.display = 'none';
+            bgmon.style.display = 'block';
+        }
+    };
+    function playNext() {
+        audioElement.src = playList[currentIndex];
+        audioElement.volume = 0.5;
+        audioElement.play();
+        currentIndex = (currentIndex + 1) % playList.length;
+    }
+    audioElement.addEventListener('ended', playNext);
+    playNext();
+    const audio = document.getElementById('bgm');
+    const bgmoff = document.getElementById('bgmoff');
+    const bgmon = document.getElementById('bgmon');
+    bgmon.addEventListener('click', function () {
+        audio.muted = true;
+        bgmon.style.display = 'none';
+        bgmoff.style.display = 'block';
+    });
+    bgmoff.addEventListener('click', function () {
+        audio.muted = false;
+        bgmoff.style.display = 'none';
+        bgmon.style.display = 'block';
+    });
+  </script>
+  <script>
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    const activeLink = document.querySelector('nav ul li.active a');
+    if (activeLink) {
+        setActiveLink(activeLink);
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+
+            navLinks.forEach(l => l.parentNode.classList.remove('active'));
+
+            this.parentNode.classList.add('active');
+        });
+    });
+    function setActiveLink(link) {
+        link.parentNode.classList.add('active');
+    }
+  </script>
+  <script src="../js/jquery.js"></script>
+  <script src="../js/tab_con.js"></script>
 </body>
-
-<script src="../js/jquery.js"></script>
-<script src="../js/tab_con.js"></script>
-
-</script>
-
 </html>

@@ -4,13 +4,16 @@
     right: 50px;
     z-index: 1000;
 }
+
 .audio-controls img {
     cursor: pointer;
     display: none;
 }
+
 .audio-controls #bgmon {
     display: block;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -22,11 +25,10 @@ header {
     color: #fff;
     text-align: center;
     padding: 10px;
-       position: fixed;
+    position: fixed;
     width: 100%;
     left: 0;
     z-index: 1000;
-
 }
 
 header h1 {
@@ -77,11 +79,13 @@ nav ul li.active a {
     display: block;
     margin-left: 20px;
 }
+
 .logo-button {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
+
 .city {
     width: 100%;
 }

@@ -1,7 +1,3 @@
-.character__sidebar{
-  z-index: 99;
-}
-
 .thumbs-box{
 position: absolute;
 display: flex;
@@ -10,6 +6,8 @@ left: 50%;
 bottom: 0;
 margin-left: -500px;
 z-index: 9;
+border-radius: 5px;
+background: rgba(255, 255, 255, 0.2);
 }
 
 .swiper {
@@ -94,40 +92,6 @@ z-index: 9;
   background:url(../img/next.png) no-repeat;
   background-size: cover;
   right: 30px;
-}
-
-.character__intro{
-  display: flex;
-  width: 100%;
-  min-height: 26px;
-  max-height: 150px;
-  overflow-y: auto;
-  padding: 10px 0 10px 15px;
-  box-sizing: border-box;
-  background: rgba(1, 1, 1, 0.5);
-  font-size: 16px;
-  color: #fff;
-  margin-top: 50px;
-  line-height: 26px;
-}
-
-.character__main{
-  background-size: auto 800px;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.character__icon{
-  opacity: 0.2;
-  margin-left: -950px;
-  transform: scale(0.7);
-  height: 378px;
-}
-
-.thumbs-box{
-  border-radius: 5px;
-    background: rgba(255, 255, 255, 0.2);
 }
 
 .audio-controls {
@@ -217,6 +181,35 @@ nav ul li.active a {
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.character__intro{
+  display: flex;
+  width: 100%;
+  min-height: 26px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding: 10px 0 10px 15px;
+  box-sizing: border-box;
+  background: rgba(1, 1, 1, 0.5);
+  font-size: 16px;
+  color: #fff;
+  margin-top: 50px;
+  line-height: 26px;
+}
+
+.character__main{
+  background-size: auto 800px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.character__icon{
+  opacity: 0.2;
+  margin-left: -950px;
+  transform: scale(0.7);
+  height: 378px;
 }
 
 .character__sidebar {

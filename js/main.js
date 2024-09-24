@@ -15,15 +15,18 @@ var swiper = new Swiper(".mySwiper", {
       thumbs: {
         swiper: swiper,
       },
-      //effect: 'fade',
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
       loop: true
 
     });
 
     document.querySelector('.btn-next').addEventListener('click', function () {
-      swiper2.slideNext(); // 切换到下一张幻灯片
+      swiper2.slideNext();
     });
 
     document.querySelector('.btn-prev').addEventListener('click', function () {
-      swiper2.slidePrev(); // 切换到上一张幻灯片
+      swiper2.slidePrev();
     });

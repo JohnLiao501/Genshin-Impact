@@ -1,12 +1,14 @@
 <html>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>《原神》&nbsp;-&nbsp;主页</title>
-    <link rel="icon" type="image/x-icon" href="..\icon\pm.ico">
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="icon" type="image/x-icon" href="../icon/pm.ico">
+    <link rel="stylesheet" href="../css/home.css">
 
 </head>
+
 <body>
     <header>
         <nav>
@@ -21,116 +23,61 @@
         </nav>
     </header>
 
-    <video src="../video/5.0封面(循环用).mp4" style="width: 100%;height: 100%;object-fit: cover;position: fixed;top: 0;left: 0;z-index: -1" autoplay="autoplay" loop="loop" muted="muted"></video>
-    <img id="playerButton" src="../icon/player.png" alt="Play Video" style="cursor: pointer;position: fixed; top: 59%; left: 80%; transform: translate(-50%, 370%);height: 44.24;width: 53.2;">
+    <video src="../video/《原神》加载动画/上午.mp4" 
+    style="width: 100%;height: 100%;object-fit: cover;position: fixed;top: 0;left: 0;z-index: -1" 
+    autoplay="autoplay" 
+    loop="loop" 
+    muted="muted">
+    </video>
 
-    <div id="videoModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+    <audio id="bgm" autoplay></audio>  
+
+    <div class="poster__video--entry">
+        <img src="../icon/播放边框.png">
+        <button class="playerButton" id="playerButton"></button>
+    </div>
+
+    <div id="videoModal" 
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <video id="modalVideo" controls width="640" height="480">
-                <source src="../video/《原神》官方网站-全新5.0版本「荣花与炎日之途」上线！.mp4" type="video/mp4">
+                <source src="../video/《原神·提瓦特篇》主线章节预告PV-「足迹」.mp4" type="video/mp4">
             </video>
         </div>
     </div>
-    <div id="videoModal2" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
+
+    <div id="videoModal2" 
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999;">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <video id="modalVideo2" controls width="640" height="480">
                 <source src="../video/《原神》全新开场动画-「空中荧火」.mp4" type="video/mp4">
             </video>
         </div>
     </div>
-    <audio id="bgm" autoplay>
-        </audio>
+
     <div class="audio-controls">
         <img id="bgmoff" src="../icon/bgmoff.png" alt="静音" style="display: none;">
         <img id="bgmon" src="../icon/bgmon.png" alt="取消静音" style="display: block;">
     </div>
 
+    <script src="../js/music_player.js"></script>
+    <script src="../js/activeLink.js"></script>
     <script>
-        const audioElement = document.getElementById('bgm');
-        const playList = [
-            '../bgm/陈致逸、HOYO-MiX - Genshin Impact Main Theme 原神.mp3',
-            '../bgm/HOYO-MiX、陈致逸 - Twilight Serenity (Genshin Impact Main Theme Var.) 宁静的黄昏.mp3',
-            '../bgm/HOYO-MiX、陈致逸 - Eternal Anamnesis (Genshin Impact Main Theme Var.) 永恒的回忆.mp3'
-        ];
-        let currentIndex = 0;
-        document.getElementById('playerButton').addEventListener('click', function() {
-            audioElement.muted = true;
-
-            var modal = document.getElementById('videoModal');
-            var video = document.getElementById('modalVideo');
-            modal.style.display = 'block';
-            video.play();
-        });
-
-        document.getElementById('header-logo').addEventListener('click', function() {
-            document.getElementById('videoModal2').style.display = 'block';
-            var modalVideo2 = document.getElementById('modalVideo2');
-            modalVideo2.play();
-            audioElement.muted = true;
-            bgmon.style.display = 'none';
-            bgmoff.style.display = 'block';
-        });
-        window.onclick = function(event) {
-            var modal = document.getElementById('videoModal');
-            var modal2 = document.getElementById('videoModal2');
-            var video = modal.querySelector('video');
-            var video2 = modal2.querySelector('video');
-            if (event.target === modal && !video.contains(event.target)) {
-                video.pause();
-                modal.style.display = 'none';
-                audioElement.muted = false;
-                bgmoff.style.display = 'none';
-                bgmon.style.display = 'block';
-            } else if (event.target === modal2 && !video2.contains(event.target)) {
-                video2.pause();
-                modal2.style.display = 'none';
-                audioElement.muted = false;
-                bgmoff.style.display = 'none';
-                bgmon.style.display = 'block';
-            }
-        };
-        function playNext() {
-            audioElement.src = playList[currentIndex];
-            audioElement.volume = 0.5;
-            audioElement.play();
-            currentIndex = (currentIndex + 1) % playList.length;
-        }
-        audioElement.addEventListener('ended', playNext);
-        playNext();
-        const audio = document.getElementById('bgm');
-        const bgmoff = document.getElementById('bgmoff');
-        const bgmon = document.getElementById('bgmon');
-        bgmon.addEventListener('click', function() {
-            audio.muted = true;
-            bgmon.style.display = 'none';
-            bgmoff.style.display = 'block';
-        });
-        bgmoff.addEventListener('click', function() {
-            audio.muted = false;
-            bgmoff.style.display = 'none';
-            bgmon.style.display = 'block';
-        });
-    </script>
-    <script>
-        const navLinks = document.querySelectorAll('nav ul li a');
-
-        const activeLink = document.querySelector('nav ul li.active a');
-        if (activeLink) {
-            setActiveLink(activeLink);
-        }
-
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-
-                navLinks.forEach(l => l.parentNode.classList.remove('active'));
-
-                this.parentNode.classList.add('active');
-            });
-        });
-        function setActiveLink(link) {
-            link.parentNode.classList.add('active');
+        var video = document.querySelector('video');
+        var date = new Date();
+        var h = date.getHours();
+        console.log(h);
+        if (h > 6 && h < 9) {
+            video.src = '../video/《原神》加载动画/清晨.mp4';
+        } else if (h >= 9 && h < 15) {
+            video.src = '../video/《原神》加载动画/上午.mp4';
+        } else if (h >= 15 && h < 19) {
+            video.src = '../video/《原神》加载动画/下午.mp4';
+        } else {
+            video.src = '../video/《原神》加载动画/夜晚.mp4';
         }
     </script>
 
 </body>
+
 </html>

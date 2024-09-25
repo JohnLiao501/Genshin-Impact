@@ -81,3 +81,44 @@ nav ul li.active a {
     background-color: transparent;
     cursor: pointer;
 }
+
+.poster__video--entry {
+    position: absolute;
+    top: 448px;
+    left: 38%;
+    top: 70%;
+  }
+  
+.playerButton {
+    position: relative;
+    display: block;
+    margin: -63px auto 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff;
+    transition: 0.5s;    
+}
+  
+.playerButton:hover {
+    background: transparent;
+    cursor: pointer;
+}
+  
+.playerButton::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%);
+    background: url(../icon/player.png) no-repeat;
+    background-position: center top;
+}
+  
+.playerButton:hover::before {
+    background-position: center bottom;
+}
